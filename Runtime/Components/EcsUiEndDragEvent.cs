@@ -1,4 +1,4 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // The MIT License
 // Ui extension https://github.com/Leopotam/ecs-ui
 // for ECS framework https://github.com/Leopotam/ecs

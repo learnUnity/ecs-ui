@@ -8,7 +8,7 @@
 using UnityEngine.EventSystems;
 
 namespace LeopotamGroup.Ecs.Ui.Components {
-    public sealed class EcsUiClickEvent {
+    public sealed class EcsUiDropEvent {
         public string WidgetName;
 
         public int PointerId;

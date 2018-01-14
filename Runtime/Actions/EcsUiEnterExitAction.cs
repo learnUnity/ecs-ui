@@ -10,30 +10,21 @@ using UnityEngine.EventSystems;
 
 namespace LeopotamGroup.Ecs.Ui.Actions {
     /// <summary>
-    /// Ui action for processing OnBeginDrag / OnDrag / OnEndDrag events.
+    /// Ui action for processing enter / exit cursor events.
     /// </summary>
-    public sealed class EcsUiDragAction : EcsUiActionBase, IBeginDragHandler, IDragHandler, IEndDragHandler {
-        void IBeginDragHandler.OnBeginDrag (PointerEventData eventData) {
+    public sealed class EcsUiEnterExitAction : EcsUiActionBase, IPointerEnterHandler, IPointerExitHandler {
+        void IPointerEnterHandler.OnPointerEnter (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiBeginDragEvent> ();
+                var msg = Emitter.CreateMessage<EcsUiEnterEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.HitResult = eventData.pointerCurrentRaycast;
                 msg.PointerId = eventData.pointerId;
             }
         }
 
-        void IDragHandler.OnDrag (PointerEventData eventData) {
+        void IPointerExitHandler.OnPointerExit (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiDragEvent> ();
-                msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
-                msg.PointerId = eventData.pointerId;
-            }
-        }
-
-        void IEndDragHandler.OnEndDrag (PointerEventData eventData) {
-            if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiEndDragEvent> ();
+                var msg = Emitter.CreateMessage<EcsUiExitEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.HitResult = eventData.pointerCurrentRaycast;
                 msg.PointerId = eventData.pointerId;

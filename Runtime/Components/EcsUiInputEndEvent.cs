@@ -5,14 +5,14 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace LeopotamGroup.Ecs.Ui.Components {
-    public sealed class EcsUiClickEvent {
+    public sealed class EcsUiInputEndEvent {
         public string WidgetName;
 
-        public int PointerId;
+        public InputField Sender;
 
-        public RaycastResult HitResult;
+        public string Value;
     }
 }
