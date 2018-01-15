@@ -11,8 +11,6 @@ namespace LeopotamGroup.Ecs.Ui.Components {
     public sealed class EcsUiDropEvent {
         public string WidgetName;
 
-        public int PointerId;
-
         public GameObject Sender;
     }
 }

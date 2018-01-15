@@ -13,9 +13,18 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
     /// Ui action for processing OnBeginDrag / OnDrag / OnEndDrag events.
     /// </summary>
     public sealed class EcsUiDragAction : EcsUiActionBase, IBeginDragHandler, IDragHandler, IEndDragHandler {
+        int _beginDragEventId = -1;
+
+        int _dragEventId = -1;
+
+        int _endDragEventId = -1;
+
         void IBeginDragHandler.OnBeginDrag (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiBeginDragEvent> ();
+                if (_beginDragEventId == -1) {
+                    _beginDragEventId = Emitter.GetComponentIndex<EcsUiBeginDragEvent> ();
+                }
+                var msg = Emitter.CreateMessage<EcsUiBeginDragEvent> (_beginDragEventId);
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
@@ -24,21 +33,24 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
 
         void IDragHandler.OnDrag (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiDragEvent> ();
+                if (_dragEventId == -1) {
+                    _dragEventId = Emitter.GetComponentIndex<EcsUiDragEvent> ();
+                }
+                var msg = Emitter.CreateMessage<EcsUiDragEvent> (_dragEventId);
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
                 msg.Delta = eventData.delta;
-                msg.PointerId = eventData.pointerId;
-                // UnityEngine.Debug.Log ("SendDrag: " + msg.Delta);
             }
         }
 
         void IEndDragHandler.OnEndDrag (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiEndDragEvent> ();
+                if (_endDragEventId == -1) {
+                    _endDragEventId = Emitter.GetComponentIndex<EcsUiEndDragEvent> ();
+                }
+                var msg = Emitter.CreateMessage<EcsUiEndDragEvent> (_endDragEventId);
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
-                msg.PointerId = eventData.pointerId;
             }
         }
     }

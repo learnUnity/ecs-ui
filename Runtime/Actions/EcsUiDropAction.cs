@@ -13,12 +13,16 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
     /// Ui action for processing OnDrop events.
     /// </summary>
     public sealed class EcsUiDropAction : EcsUiActionBase, IDropHandler {
+        int _dropEventId = -1;
+
         void IDropHandler.OnDrop (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                var msg = Emitter.CreateMessage<EcsUiDropEvent> ();
+                if (_dropEventId == -1) {
+                    _dropEventId = Emitter.GetComponentIndex<EcsUiDropEvent> ();
+                }
+                var msg = Emitter.CreateMessage<EcsUiDropEvent> (_dropEventId);
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
-                msg.PointerId = eventData.pointerId;
             }
         }
     }
