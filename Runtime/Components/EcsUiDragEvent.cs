@@ -5,7 +5,7 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using UnityEngine.EventSystems;
+using UnityEngine;
 
 namespace LeopotamGroup.Ecs.Ui.Components {
     public sealed class EcsUiDragEvent {
@@ -13,6 +13,8 @@ namespace LeopotamGroup.Ecs.Ui.Components {
 
         public int PointerId;
 
-        public RaycastResult HitResult;
+        public GameObject Sender;
+
+        public Vector2 Delta;
     }
 }

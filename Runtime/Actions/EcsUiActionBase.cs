@@ -16,14 +16,19 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
         /// <summary>
         /// Logical name for filtering widgets.
         /// </summary>
-        public string WidgetName;
+        [SerializeField]
+        protected string WidgetName;
 
         /// <summary>
         /// Ecs entities emitter.
         /// </summary>
-        public EcsUiEmitter Emitter;
+        [SerializeField]
+        protected EcsUiEmitter Emitter;
 
-        void OnEnable () {
+        [SerializeField]
+        bool _registerAsNamedObject;
+
+        void Start () {
             if ((object) Emitter == null) {
                 Emitter = GetComponentInParent<EcsUiEmitter> ();
             }
@@ -32,6 +37,30 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
                 Debug.LogError ("EcsUiEmitter not found in hierarchy", this);
             }
 #endif
+            if ((object) Emitter != null) {
+                if (_registerAsNamedObject) {
+                    Emitter.SetNamedObject (WidgetName, gameObject);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Helper to add ecs actions from code.
+        /// </summary>
+        /// <param name="go">GameObject holder.</param>
+        /// <param name="widgetName">Optional logical widget name.</param>
+        /// <param name="registerObject">Should this action will be registered at emitter or not. Registered actions cant be removed!</param>
+        /// <param name="emitter">Optional emitter. If not provided - will be detected automatically.</param>
+        public static T AddAction<T> (
+            GameObject go,
+            string widgetName = null,
+            bool registerObject = false,
+            EcsUiEmitter emitter = null) where T : EcsUiActionBase {
+            var action = go.AddComponent<T> ();
+            action.WidgetName = widgetName;
+            action._registerAsNamedObject = registerObject;
+            action.Emitter = emitter;
+            return action;
         }
     }
 }

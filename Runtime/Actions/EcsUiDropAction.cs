@@ -17,7 +17,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiDropEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
             }
         }

@@ -67,32 +67,32 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
         void IEcsRunSystem.Run () {
             for (var i = _clickEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _clickEvents.Entities[i];
-                _world.GetComponent<EcsUiClickEvent> (entity, _clickEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiClickEvent> (entity, _clickEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _beginDragEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _beginDragEvents.Entities[i];
-                _world.GetComponent<EcsUiBeginDragEvent> (entity, _beginDragEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiBeginDragEvent> (entity, _beginDragEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _dragEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _dragEvents.Entities[i];
-                _world.GetComponent<EcsUiDragEvent> (entity, _dragEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiDragEvent> (entity, _dragEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _endDragEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _endDragEvents.Entities[i];
-                _world.GetComponent<EcsUiEndDragEvent> (entity, _endDragEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiEndDragEvent> (entity, _endDragEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _enterEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _enterEvents.Entities[i];
-                _world.GetComponent<EcsUiEnterEvent> (entity, _enterEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiEnterEvent> (entity, _enterEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _exitEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _exitEvents.Entities[i];
-                _world.GetComponent<EcsUiExitEvent> (entity, _exitEventId).HitResult.Clear ();
+                _world.GetComponent<EcsUiExitEvent> (entity, _exitEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
             for (var i = _inputChangeEvents.Entities.Count - 1; i >= 0; i--) {

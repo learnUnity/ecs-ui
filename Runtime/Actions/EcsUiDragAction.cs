@@ -17,7 +17,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiBeginDragEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
             }
         }
@@ -26,8 +26,10 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiDragEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
+                msg.Delta = eventData.delta;
                 msg.PointerId = eventData.pointerId;
+                // UnityEngine.Debug.Log ("SendDrag: " + msg.Delta);
             }
         }
 
@@ -35,7 +37,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiEndDragEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
             }
         }

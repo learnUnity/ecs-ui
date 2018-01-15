@@ -17,7 +17,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiEnterEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
             }
         }
@@ -26,7 +26,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
             if ((object) Emitter != null) {
                 var msg = Emitter.CreateMessage<EcsUiExitEvent> ();
                 msg.WidgetName = WidgetName;
-                msg.HitResult = eventData.pointerCurrentRaycast;
+                msg.Sender = gameObject;
                 msg.PointerId = eventData.pointerId;
             }
         }

@@ -5,14 +5,9 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using UnityEngine;
-
-namespace LeopotamGroup.Ecs.Ui.Components {
-    public sealed class EcsUiExitEvent {
-        public string WidgetName;
-
-        public int PointerId;
-
-        public GameObject Sender;
-    }
+namespace LeopotamGroup.Ecs.Ui.Actions {
+    /// <summary>
+    /// Ui action for provides save feature for named object.
+    /// </summary>
+    public sealed class EcsUiNoAction : EcsUiActionBase { }
 }
