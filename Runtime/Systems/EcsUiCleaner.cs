@@ -60,6 +60,12 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
         [EcsIndex (typeof (EcsUiInputEndEvent))]
         int _inputEndEventId;
 
+        [EcsFilterInclude (typeof (EcsUiScrollViewEvent))]
+        EcsFilter _scrollViewEvents;
+
+        [EcsIndex (typeof (EcsUiScrollViewEvent))]
+        int _scrollViewEventId;
+
         EcsRunSystemType IEcsRunSystem.GetRunSystemType () {
             return EcsRunSystemType.Update;
         }
@@ -103,6 +109,11 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
             for (var i = _inputEndEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _inputEndEvents.Entities[i];
                 _world.GetComponent<EcsUiInputEndEvent> (entity, _inputEndEventId).Sender = null;
+                _world.RemoveEntity (entity);
+            }
+            for (var i = _scrollViewEvents.Entities.Count - 1; i >= 0; i--) {
+                var entity = _scrollViewEvents.Entities[i];
+                _world.GetComponent<EcsUiScrollViewEvent> (entity, _scrollViewEventId).Sender = null;
                 _world.RemoveEntity (entity);
             }
         }
