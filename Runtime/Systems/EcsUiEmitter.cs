@@ -16,16 +16,11 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
 
         readonly Dictionary<int, GameObject> _actions = new Dictionary<int, GameObject> (64);
 
-        public int GetComponentIndex<T> () where T : class {
-            return _world.GetComponentIndex<T> ();
-        }
-
         /// <summary>
         /// Creates ecs entity with T component on it.
         /// </summary>
-        /// <param name="componentId">Component index. If equals to "-1" - will try to find registered type.</param>
-        public T CreateMessage<T> (int componentId = -1) where T : class {
-            return _world.CreateEntityWith<T> (componentId);
+        public T CreateMessage<T> () where T : class, new () {
+            return _world.CreateEntityWith<T> ();
         }
 
         /// <summary>

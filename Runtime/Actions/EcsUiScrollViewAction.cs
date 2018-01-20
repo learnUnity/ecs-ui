@@ -17,8 +17,6 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
     public sealed class EcsUiScrollViewAction : EcsUiActionBase {
         ScrollRect _scrollView;
 
-        int _scrollViewEventId = -1;
-
         void Awake () {
             _scrollView = GetComponent<ScrollRect> ();
             _scrollView.onValueChanged.AddListener (OnScrollViewValueChanged);
@@ -26,10 +24,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
 
         void OnScrollViewValueChanged (Vector2 value) {
             if ((object) Emitter != null) {
-                if (_scrollViewEventId == -1) {
-                    _scrollViewEventId = Emitter.GetComponentIndex<EcsUiScrollViewEvent> ();
-                }
-                var msg = Emitter.CreateMessage<EcsUiScrollViewEvent> (_scrollViewEventId);
+                var msg = Emitter.CreateMessage<EcsUiScrollViewEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = _scrollView;
                 msg.Value = value;

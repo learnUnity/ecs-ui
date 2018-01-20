@@ -17,15 +17,10 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
         [Range (1f, 2048f)]
         public float DragTreshold = 5f;
 
-        int _clickEventId = -1;
-
         void IPointerClickHandler.OnPointerClick (PointerEventData eventData) {
             if ((eventData.pressPosition - eventData.position).sqrMagnitude < DragTreshold * DragTreshold) {
                 if ((object) Emitter != null) {
-                    if (_clickEventId == -1) {
-                        _clickEventId = Emitter.GetComponentIndex<EcsUiClickEvent> ();
-                    }
-                    var msg = Emitter.CreateMessage<EcsUiClickEvent> (_clickEventId);
+                    var msg = Emitter.CreateMessage<EcsUiClickEvent> ();
                     msg.WidgetName = WidgetName;
                     msg.Sender = gameObject;
                 }

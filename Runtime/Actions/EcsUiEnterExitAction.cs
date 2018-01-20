@@ -13,16 +13,9 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
     /// Ui action for processing enter / exit cursor events.
     /// </summary>
     public sealed class EcsUiEnterExitAction : EcsUiActionBase, IPointerEnterHandler, IPointerExitHandler {
-        int _enterEventId = -1;
-
-        int _exitEventId = -1;
-
         void IPointerEnterHandler.OnPointerEnter (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                if (_enterEventId == -1) {
-                    _enterEventId = Emitter.GetComponentIndex<EcsUiEnterEvent> ();
-                }
-                var msg = Emitter.CreateMessage<EcsUiEnterEvent> (_enterEventId);
+                var msg = Emitter.CreateMessage<EcsUiEnterEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
             }
@@ -30,10 +23,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
 
         void IPointerExitHandler.OnPointerExit (PointerEventData eventData) {
             if ((object) Emitter != null) {
-                if (_exitEventId == -1) {
-                    _exitEventId = Emitter.GetComponentIndex<EcsUiExitEvent> ();
-                }
-                var msg = Emitter.CreateMessage<EcsUiExitEvent> (_exitEventId);
+                var msg = Emitter.CreateMessage<EcsUiExitEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
             }

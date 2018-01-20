@@ -67,9 +67,6 @@ public class TestUiClickEventSystem : EcsReactSystem {
     [EcsFilterInclude (typeof (EcsUiClickEvent))]
     EcsFilter _clickEvents;
 
-    [EcsIndex (typeof (EcsUiClickEvent))]
-    int _clickEventId;
-
     public override EcsFilter GetReactFilter () {
         return _clickEvents;
     }
@@ -84,7 +81,7 @@ public class TestUiClickEventSystem : EcsReactSystem {
 
     public override void RunReact (List<int> entities) {
         foreach (var entity in entities) {
-            var data = _world.GetComponent<EcsUiClickEvent> (entity, _clickEventId);
+            var data = _world.GetComponent<EcsUiClickEvent> (entity);
             Debug.Log ("Im clicked!", data.HitResult.gameObject);
         }
     }
