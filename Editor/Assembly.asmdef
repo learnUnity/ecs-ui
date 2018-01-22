@@ -1,0 +1,10 @@
+{
+    "name": "LeopotamGroup.Ecs.Ui.Editor",
+    "references": [
+        "LeopotamGroup.Ecs.Ui"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
