@@ -3,7 +3,7 @@
 # Unity uGui extension for Entity Component System framework
 Easy bindings for events from uGui to [ECS framework](https://github.com/Leopotam/ecs) - main goal of this extension.
 
-> **Its early work-in-progress stage, not recommended to use in real projects, any api / behaviour can change later.**
+> **This software in work-in-progress stage, api mostly stable.**
 
 > Tested / developed on unity 2017.3 and contains assembly definition for compiling to separate assembly file for performance reason.
 
