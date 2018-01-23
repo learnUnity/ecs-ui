@@ -25,9 +25,9 @@ public class Startup : MonoBehaviour {
 
     void Start () {
         _world = new EcsWorld ();
-        _world.AddSystem (_uiEmitter);
+        _world.RegisterSystem (_uiEmitter);
         // Additional initialization...
-        _world.Initialize();
+        _world.Initialize ();
     }
 }
 ```
@@ -44,10 +44,10 @@ public class Startup : MonoBehaviour {
 
     void Start () {
         _world = new EcsWorld ();
-        _world.AddSystem (_uiEmitter);
+        _world.RegisterSystem (_uiEmitter);
         // Additional initialization...
-        _world.AddSystem (new EcsUiCleaner());
-        _world.Initialize();
+        _world.RegisterSystem (new EcsUiCleaner ());
+        _world.Initialize ();
     }
 }
 ```
