@@ -48,10 +48,6 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
             return retVal;
         }
 
-        EcsRunSystemType IEcsRunSystem.GetRunSystemType () {
-            return EcsRunSystemType.Update;
-        }
-
         void IEcsRunSystem.Run () { }
     }
 }

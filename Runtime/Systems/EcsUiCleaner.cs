@@ -39,10 +39,6 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
         [EcsFilterInclude (typeof (EcsUiScrollViewEvent))]
         EcsFilter _scrollViewEvents;
 
-        EcsRunSystemType IEcsRunSystem.GetRunSystemType () {
-            return EcsRunSystemType.Update;
-        }
-
         void IEcsRunSystem.Run () {
             for (var i = _clickEvents.Entities.Count - 1; i >= 0; i--) {
                 var entity = _clickEvents.Entities[i];
