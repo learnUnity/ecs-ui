@@ -21,33 +21,35 @@ public class Startup : MonoBehaviour {
     [SerializeField]
     EcsUiEmitter _uiEmitter;
 
-    EcsWorld _world;
+    EcsSystems _systems;
 
     void Start () {
-        _world = new EcsWorld ();
-        _world.AddSystem (_uiEmitter);
-        // Additional initialization...
-        _world.Initialize();
+        var world = new EcsWorld ();
+        _systems = new EcsSystems(world)
+            .Add (_uiEmitter);
+            // Additional initialization here...
+        _systems.Initialize ();
     }
 }
 ```
 
 ## EcsUiCleaner
-Ecs run-system that cleanup all ui events in world after processing. Should be added to `ecs-world` after all systems that can process events from ui:
+Ecs run-system that cleanup all ui events in world after processing. Should be added to `EcsSystems` after all systems that can process events from ui:
 ```
 public class Startup : MonoBehaviour {
     // Field that should be initialized by instance of `EcsUiEmitter` assigned to Ui root GameObject.
     [SerializeField]
     EcsUiEmitter _uiEmitter;
 
-    EcsWorld _world;
+    EcsSystems _systems;
 
     void Start () {
-        _world = new EcsWorld ();
-        _world.AddSystem (_uiEmitter);
-        // Additional initialization...
-        _world.AddSystem (new EcsUiCleaner());
-        _world.Initialize();
+        var world = new EcsWorld ();
+        _systems = new EcsSystems(world)
+            .Add (_uiEmitter);
+            // Additional initialization here...
+            .Add (new EcsUiCleaner ());
+        _systems.Initialize ();
     }
 }
 ```
@@ -87,6 +89,9 @@ public class TestUiClickEventSystem : EcsReactSystem {
     }
 }
 ```
+
+# Examples
+[Examples repo](https://github.com/Leopotam/ecs-ui.examples.git).
 
 # License
 The software released under the terms of the MIT license. Enjoy.
