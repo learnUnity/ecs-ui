@@ -24,17 +24,24 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
         }
 
         /// <summary>
-        /// Sets link to named GameObject to use it later from code.
+        /// Sets link to named GameObject to use it later from code. If GameObject is null - unset named link.
         /// </summary>
         /// <param name="name">Logical name.</param>
         /// <param name="go">GameObject link.</param>
         public void SetNamedObject (string name, GameObject go) {
-            if (go != null && !string.IsNullOrEmpty (name)) {
+            if (!string.IsNullOrEmpty (name)) {
                 var id = name.GetHashCode ();
                 if (_actions.ContainsKey (id)) {
-                    throw new Exception (string.Format ("Action with \"{0}\" name already registered", name));
+                    if ((object) go == null) {
+                        _actions.Remove (id);
+                    } else {
+                        throw new Exception (string.Format ("Action with \"{0}\" name already registered", name));
+                    }
+                } else {
+                    if ((object) go != null) {
+                        _actions[id] = go.gameObject;
+                    }
                 }
-                _actions[id] = go.gameObject;
             }
         }
 
