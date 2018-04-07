@@ -18,6 +18,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
                 var msg = Emitter.CreateMessage<EcsUiBeginDragEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
+                msg.Position = eventData.position;
                 msg.PointerId = eventData.pointerId;
             }
         }
@@ -27,6 +28,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
                 var msg = Emitter.CreateMessage<EcsUiDragEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
+                msg.Position = eventData.position;
                 msg.Delta = eventData.delta;
             }
         }
@@ -36,6 +38,8 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
                 var msg = Emitter.CreateMessage<EcsUiEndDragEvent> ();
                 msg.WidgetName = WidgetName;
                 msg.Sender = gameObject;
+                msg.Position = eventData.position;
+                msg.PointerId = eventData.pointerId;
             }
         }
     }

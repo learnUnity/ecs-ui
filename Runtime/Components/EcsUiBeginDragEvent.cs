@@ -11,8 +11,10 @@ namespace LeopotamGroup.Ecs.Ui.Components {
     public sealed class EcsUiBeginDragEvent {
         public string WidgetName;
 
-        public int PointerId;
-
         public GameObject Sender;
+
+        public Vector2 Position;
+
+        public int PointerId;
     }
 }
