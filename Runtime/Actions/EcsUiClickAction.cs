@@ -23,6 +23,7 @@ namespace LeopotamGroup.Ecs.Ui.Actions {
                     var msg = Emitter.CreateMessage<EcsUiClickEvent> ();
                     msg.WidgetName = WidgetName;
                     msg.Sender = gameObject;
+                    msg.Position = eventData.position;
                 }
             }
         }
