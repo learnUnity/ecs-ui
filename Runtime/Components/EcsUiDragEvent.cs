@@ -13,6 +13,8 @@ namespace LeopotamGroup.Ecs.Ui.Components {
 
         public GameObject Sender;
 
+        public Vector2 Position;
+
         public Vector2 Delta;
     }
 }

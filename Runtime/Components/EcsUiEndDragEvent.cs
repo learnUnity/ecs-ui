@@ -12,5 +12,9 @@ namespace LeopotamGroup.Ecs.Ui.Components {
         public string WidgetName;
 
         public GameObject Sender;
+
+        public Vector2 Position;
+
+        public int PointerId;
     }
 }
