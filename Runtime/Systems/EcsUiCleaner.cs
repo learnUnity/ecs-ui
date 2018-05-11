@@ -8,84 +8,64 @@
 using LeopotamGroup.Ecs.Ui.Components;
 
 namespace LeopotamGroup.Ecs.Ui.Systems {
+    [EcsInject]
     public class EcsUiCleaner : IEcsRunSystem {
-        [EcsWorld]
         EcsWorld _world;
 
-        [EcsFilterInclude (typeof (EcsUiClickEvent))]
-        EcsFilter _clickEvents;
+        EcsFilter<EcsUiClickEvent> _clickEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiBeginDragEvent))]
-        EcsFilter _beginDragEvents;
+        EcsFilter<EcsUiBeginDragEvent> _beginDragEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiDragEvent))]
-        EcsFilter _dragEvents;
+        EcsFilter<EcsUiDragEvent> _dragEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiEndDragEvent))]
-        EcsFilter _endDragEvents;
+        EcsFilter<EcsUiEndDragEvent> _endDragEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiEnterEvent))]
-        EcsFilter _enterEvents;
+        EcsFilter<EcsUiEnterEvent> _enterEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiExitEvent))]
-        EcsFilter _exitEvents;
+        EcsFilter<EcsUiExitEvent> _exitEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiInputChangeEvent))]
-        EcsFilter _inputChangeEvents;
+        EcsFilter<EcsUiInputChangeEvent> _inputChangeEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiInputEndEvent))]
-        EcsFilter _inputEndEvents;
+        EcsFilter<EcsUiInputEndEvent> _inputEndEvents = null;
 
-        [EcsFilterInclude (typeof (EcsUiScrollViewEvent))]
-        EcsFilter _scrollViewEvents;
+        EcsFilter<EcsUiScrollViewEvent> _scrollViewEvents = null;
 
         void IEcsRunSystem.Run () {
-            int entity;
-
             for (var i = 0; i < _clickEvents.EntitiesCount; i++) {
-                entity = _clickEvents.Entities[i];
-                _world.GetComponent<EcsUiClickEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _clickEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_clickEvents.Entities[i]);
             }
             for (var i = 0; i < _beginDragEvents.EntitiesCount; i++) {
-                entity = _beginDragEvents.Entities[i];
-                _world.GetComponent<EcsUiBeginDragEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _beginDragEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_beginDragEvents.Entities[i]);
             }
             for (var i = 0; i < _dragEvents.EntitiesCount; i++) {
-                entity = _dragEvents.Entities[i];
-                _world.GetComponent<EcsUiDragEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _dragEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_dragEvents.Entities[i]);
             }
             for (var i = 0; i < _endDragEvents.EntitiesCount; i++) {
-                entity = _endDragEvents.Entities[i];
-                _world.GetComponent<EcsUiEndDragEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _endDragEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_endDragEvents.Entities[i]);
             }
             for (var i = 0; i < _enterEvents.EntitiesCount; i++) {
-                entity = _enterEvents.Entities[i];
-                _world.GetComponent<EcsUiEnterEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _enterEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_enterEvents.Entities[i]);
             }
             for (var i = 0; i < _exitEvents.EntitiesCount; i++) {
-                entity = _exitEvents.Entities[i];
-                _world.GetComponent<EcsUiExitEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _exitEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_exitEvents.Entities[i]);
             }
             for (var i = 0; i < _inputChangeEvents.EntitiesCount; i++) {
-                entity = _inputChangeEvents.Entities[i];
-                _world.GetComponent<EcsUiInputChangeEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _inputChangeEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_inputChangeEvents.Entities[i]);
             }
             for (var i = 0; i < _inputEndEvents.EntitiesCount; i++) {
-                entity = _inputEndEvents.Entities[i];
-                _world.GetComponent<EcsUiInputEndEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _inputEndEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_inputEndEvents.Entities[i]);
             }
             for (var i = 0; i < _scrollViewEvents.EntitiesCount; i++) {
-                entity = _scrollViewEvents.Entities[i];
-                _world.GetComponent<EcsUiScrollViewEvent> (entity).Sender = null;
-                _world.RemoveEntity (entity);
+                _scrollViewEvents.Components1[i].Sender = null;
+                _world.RemoveEntity (_scrollViewEvents.Entities[i]);
             }
         }
     }

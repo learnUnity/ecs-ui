@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeopotamGroup.Ecs.Ui.Systems {
+    [EcsInject]
     public class EcsUiEmitter : MonoBehaviour, IEcsRunSystem {
-        [EcsWorld]
         EcsWorld _world;
 
         readonly Dictionary<int, GameObject> _actions = new Dictionary<int, GameObject> (64);
