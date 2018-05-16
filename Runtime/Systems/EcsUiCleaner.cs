@@ -8,9 +8,11 @@
 using LeopotamGroup.Ecs.Ui.Components;
 
 namespace LeopotamGroup.Ecs.Ui.Systems {
+#if !LEOECS_DISABLE_INJECT
     [EcsInject]
+#endif
     public class EcsUiCleaner : IEcsRunSystem {
-        EcsWorld _world;
+        EcsWorld _world = null;
 
         EcsFilter<EcsUiClickEvent> _clickEvents = null;
 
@@ -30,7 +32,29 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
 
         EcsFilter<EcsUiScrollViewEvent> _scrollViewEvents = null;
 
+#if LEOECS_DISABLE_INJECT
+        /// <summary>
+        /// Sets EcsWorld instance.
+        /// </summary>
+        /// <param name="world">Instance.</param>
+        public EcsUiCleaner SetWorld (EcsWorld world) {
+            _world = world;
+            ValidateEcsFields ();
+            _clickEvents = _world.GetFilter<EcsFilter<EcsUiClickEvent>> ();
+            _beginDragEvents = _world.GetFilter<EcsFilter<EcsUiBeginDragEvent>> ();
+            _dragEvents = _world.GetFilter<EcsFilter<EcsUiDragEvent>> ();
+            _endDragEvents = _world.GetFilter<EcsFilter<EcsUiEndDragEvent>> ();
+            _enterEvents = _world.GetFilter<EcsFilter<EcsUiEnterEvent>> ();
+            _exitEvents = _world.GetFilter<EcsFilter<EcsUiExitEvent>> ();
+            _inputChangeEvents = _world.GetFilter<EcsFilter<EcsUiInputChangeEvent>> ();
+            _inputEndEvents = _world.GetFilter<EcsFilter<EcsUiInputEndEvent>> ();
+            _scrollViewEvents = _world.GetFilter<EcsFilter<EcsUiScrollViewEvent>> ();
+            return this;
+        }
+#endif
+
         void IEcsRunSystem.Run () {
+            ValidateEcsFields ();
             for (var i = 0; i < _clickEvents.EntitiesCount; i++) {
                 _clickEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_clickEvents.Entities[i]);
@@ -66,6 +90,13 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
             for (var i = 0; i < _scrollViewEvents.EntitiesCount; i++) {
                 _scrollViewEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_scrollViewEvents.Entities[i]);
+            }
+        }
+
+        [System.Diagnostics.Conditional ("DEBUG")]
+        void ValidateEcsFields () {
+            if (_world == null) {
+                throw new System.Exception ("[EcsUiCleaner] Call SetWorld() method first with valid world instance.");
             }
         }
     }
