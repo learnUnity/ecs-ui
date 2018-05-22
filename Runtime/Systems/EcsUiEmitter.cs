@@ -10,16 +10,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeopotamGroup.Ecs.Ui.Systems {
+#if !LEOECS_DISABLE_INJECT
+    [EcsInject]
+#endif
+    /// <summary>
+    /// Emitter system for uGui events to ECS world.
+    /// </summary>
     public class EcsUiEmitter : MonoBehaviour, IEcsRunSystem {
-        [EcsWorld]
-        EcsWorld _world;
+        EcsWorld _world = null;
 
         readonly Dictionary<int, GameObject> _actions = new Dictionary<int, GameObject> (64);
 
+#if LEOECS_DISABLE_INJECT
+        /// <summary>
+        /// Sets EcsWorld instance.
+        /// </summary>
+        /// <param name="world">Instance.</param>
+        public EcsUiEmitter SetWorld (EcsWorld world) {
+            _world = world;
+            ValidateEcsFields ();
+            return this;
+        }
+#endif
         /// <summary>
         /// Creates ecs entity with T component on it.
         /// </summary>
         public T CreateMessage<T> () where T : class, new () {
+            ValidateEcsFields ();
             return _world.CreateEntityWith<T> ();
         }
 
@@ -55,6 +72,14 @@ namespace LeopotamGroup.Ecs.Ui.Systems {
             return retVal;
         }
 
+        // This type of system requires for automatic calls of EcsWorld.ProcessDelayedUpdates().
         void IEcsRunSystem.Run () { }
+
+        [System.Diagnostics.Conditional ("DEBUG")]
+        void ValidateEcsFields () {
+            if (_world == null) {
+                throw new System.Exception ("[EcsUiEmitter] Call SetWorld() method first with valid world instance.");
+            }
+        }
     }
 }
