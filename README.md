@@ -12,7 +12,7 @@ Easy bindings for events from Unity uGui to [ECS framework](https://github.com/L
 ## EcsUiEmitter
 
 Ecs run-system that generates entities with events data to `ecs world`. Should be placed on root GameObject of Ui hierarchy in scene and connected in `ecs world` before any systems that should process events from ui:
-```
+```csharp
 public class Startup : MonoBehaviour {
     // Field that should be initialized by instance of `EcsUiEmitter` assigned to Ui root GameObject.
     [SerializeField]
@@ -32,7 +32,7 @@ public class Startup : MonoBehaviour {
 
 ## EcsUiCleaner
 Ecs run-system that cleanup all ui events in world after processing. Should be added to `EcsSystems` after all systems that can process events from ui:
-```
+```csharp
 public class Startup : MonoBehaviour {
     // Field that should be initialized by instance of `EcsUiEmitter` assigned to Ui root GameObject.
     [SerializeField]
@@ -58,7 +58,7 @@ MonoBehaviour components that should be added to uGui widgets to transfer events
 
 # Components
 Event data containers: `EcsUiClickEvent`, `EcsUiBeginDragEvent`, `EcsUiEndDragEvent` and others - they can be used as ecs-components with standard filtering through `EcsFilter`:
-```
+```csharp
 public class TestUiClickEventSystem : EcsReactSystem {
     [EcsWorld]
     EcsWorld _world;
