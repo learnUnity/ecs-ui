@@ -5,10 +5,10 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using LeopotamGroup.Ecs.Ui.Components;
+using Leopotam.Ecs.Ui.Components;
 using UnityEngine.EventSystems;
 
-namespace LeopotamGroup.Ecs.Ui.Actions {
+namespace Leopotam.Ecs.Ui.Actions {
     /// <summary>
     /// Ui action for processing OnBeginDrag / OnDrag / OnEndDrag events.
     /// </summary>

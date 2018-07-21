@@ -5,10 +5,10 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using LeopotamGroup.Ecs.Ui.Systems;
+using Leopotam.Ecs.Ui.Systems;
 using UnityEngine;
 
-namespace LeopotamGroup.Ecs.Ui.Actions {
+namespace Leopotam.Ecs.Ui.Actions {
     enum EcsUiActionNameRegistrationType {
         None,
         OnAwake,

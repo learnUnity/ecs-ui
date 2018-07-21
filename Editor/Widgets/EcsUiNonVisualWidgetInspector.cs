@@ -8,7 +8,7 @@
 using UnityEditor;
 using UnityEditor.UI;
 
-namespace LeopotamGroup.Ecs.Ui.Widgets.UnityEditors {
+namespace Leopotam.Ecs.Ui.Widgets.UnityEditors {
     [CustomEditor (typeof (EcsUiNonVisualWidget), false)]
     [CanEditMultipleObjects]
     sealed class EcsUiNonVisualWidgetInspector : GraphicEditor {

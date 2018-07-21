@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LeopotamGroup.Ecs.Ui.Components {
+namespace Leopotam.Ecs.Ui.Components {
     public sealed class EcsUiScrollViewEvent {
         public string WidgetName;
 

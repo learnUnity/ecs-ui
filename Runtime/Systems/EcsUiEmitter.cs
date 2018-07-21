@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LeopotamGroup.Ecs.Ui.Systems {
+namespace Leopotam.Ecs.Ui.Systems {
 #if !LEOECS_DISABLE_INJECT
     [EcsInject]
 #endif

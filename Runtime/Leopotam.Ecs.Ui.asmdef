@@ -1,7 +1,7 @@
 {
-    "name": "LeopotamGroup.Ecs.Ui",
+    "name": "Leopotam.Ecs.Ui",
     "references": [
-        "LeopotamGroup.Ecs"
+        "Leopotam.Ecs"
     ],
     "includePlatforms": [],
     "excludePlatforms": []
