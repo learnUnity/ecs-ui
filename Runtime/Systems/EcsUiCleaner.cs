@@ -5,9 +5,9 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-using LeopotamGroup.Ecs.Ui.Components;
+using Leopotam.Ecs.Ui.Components;
 
-namespace LeopotamGroup.Ecs.Ui.Systems {
+namespace Leopotam.Ecs.Ui.Systems {
 #if !LEOECS_DISABLE_INJECT
     [EcsInject]
 #endif

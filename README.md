@@ -3,7 +3,7 @@
 # Unity uGui extension for Entity Component System framework
 Easy bindings for events from Unity uGui to [ECS framework](https://github.com/Leopotam/ecs) - main goal of this extension.
 
-> Tested on unity 2017.4 (dependent on Unity engine) and contains assembly definition for compiling to separate assembly file for performance reason.
+> Tested on unity 2018.2 (dependent on Unity engine) and contains assembly definition for compiling to separate assembly file for performance reason.
 
 > Dependent on [ECS framework](https://github.com/Leopotam/ecs) - ECS framework should be imported to unity project first.
 
@@ -12,7 +12,7 @@ Easy bindings for events from Unity uGui to [ECS framework](https://github.com/L
 ## EcsUiEmitter
 
 Ecs run-system that generates entities with events data to `ecs world`. Should be placed on root GameObject of Ui hierarchy in scene and connected in `ecs world` before any systems that should process events from ui:
-```
+```csharp
 public class Startup : MonoBehaviour {
     // Field that should be initialized by instance of `EcsUiEmitter` assigned to Ui root GameObject.
     [SerializeField]
@@ -32,7 +32,7 @@ public class Startup : MonoBehaviour {
 
 ## EcsUiCleaner
 Ecs run-system that cleanup all ui events in world after processing. Should be added to `EcsSystems` after all systems that can process events from ui:
-```
+```csharp
 public class Startup : MonoBehaviour {
     // Field that should be initialized by instance of `EcsUiEmitter` assigned to Ui root GameObject.
     [SerializeField]
@@ -58,30 +58,17 @@ MonoBehaviour components that should be added to uGui widgets to transfer events
 
 # Components
 Event data containers: `EcsUiClickEvent`, `EcsUiBeginDragEvent`, `EcsUiEndDragEvent` and others - they can be used as ecs-components with standard filtering through `EcsFilter`:
-```
-public class TestUiClickEventSystem : EcsReactSystem {
-    [EcsWorld]
-    EcsWorld _world;
+```csharp
+[EcsInject]
+public class TestUiClickEventSystem : IEcsRunSystem {
+    EcsWorld _world = null;
 
-    [EcsFilterInclude (typeof (EcsUiClickEvent))]
-    EcsFilter _clickEvents;
+    EcsFilter<EcsUiClickEvent> _clickEvents = null;
 
-    public override EcsFilter GetReactFilter () {
-        return _clickEvents;
-    }
-
-    public override EcsReactSystemType GetReactSystemType () {
-        return EcsReactSystemType.OnAdd;
-    }
-
-    public override EcsRunSystemType GetRunSystemType () {
-        return EcsRunSystemType.Update;
-    }
-
-    public override void RunReact (List<int> entities) {
-        foreach (var entity in entities) {
-            var data = _world.GetComponent<EcsUiClickEvent> (entity);
-            Debug.Log ("Im clicked!", data.HitResult.gameObject);
+    void IEcsRunSystem.Run () {
+        for (var i = 0; i < _clickEvents.EntitiesCount; i++) {
+            EcsUiClickEvent data = _clickEvents.Components1[i];
+            Debug.Log ("Im clicked!", data.Sender);
         }
     }
 }

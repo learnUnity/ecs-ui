@@ -5,7 +5,7 @@
 // Copyright (c) 2018 Leopotam <leopotam@gmail.com>
 // ----------------------------------------------------------------------------
 
-namespace LeopotamGroup.Ecs.Ui.Actions {
+namespace Leopotam.Ecs.Ui.Actions {
     /// <summary>
     /// Ui action for provides save feature for named object.
     /// </summary>

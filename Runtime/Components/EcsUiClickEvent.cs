@@ -7,7 +7,7 @@
 
 using UnityEngine;
 
-namespace LeopotamGroup.Ecs.Ui.Components {
+namespace Leopotam.Ecs.Ui.Components {
     public sealed class EcsUiClickEvent {
         public string WidgetName;
 

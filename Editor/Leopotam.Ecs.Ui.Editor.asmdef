@@ -1,7 +1,7 @@
 {
-    "name": "LeopotamGroup.Ecs.Ui.Editor",
+    "name": "Leopotam.Ecs.Ui.Editor",
     "references": [
-        "LeopotamGroup.Ecs.Ui"
+        "Leopotam.Ecs.Ui"
     ],
     "includePlatforms": [
         "Editor"
