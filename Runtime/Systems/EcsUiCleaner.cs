@@ -55,39 +55,39 @@ namespace Leopotam.Ecs.Ui.Systems {
 
         void IEcsRunSystem.Run () {
             ValidateEcsFields ();
-            for (var i = 0; i < _clickEvents.EntitiesCount; i++) {
+            foreach (var i in _clickEvents) {
                 _clickEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_clickEvents.Entities[i]);
             }
-            for (var i = 0; i < _beginDragEvents.EntitiesCount; i++) {
+            foreach (var i in _beginDragEvents) {
                 _beginDragEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_beginDragEvents.Entities[i]);
             }
-            for (var i = 0; i < _dragEvents.EntitiesCount; i++) {
+            foreach (var i in _dragEvents) {
                 _dragEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_dragEvents.Entities[i]);
             }
-            for (var i = 0; i < _endDragEvents.EntitiesCount; i++) {
+            foreach (var i in _endDragEvents) {
                 _endDragEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_endDragEvents.Entities[i]);
             }
-            for (var i = 0; i < _enterEvents.EntitiesCount; i++) {
+            foreach (var i in _enterEvents) {
                 _enterEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_enterEvents.Entities[i]);
             }
-            for (var i = 0; i < _exitEvents.EntitiesCount; i++) {
+            foreach (var i in _exitEvents) {
                 _exitEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_exitEvents.Entities[i]);
             }
-            for (var i = 0; i < _inputChangeEvents.EntitiesCount; i++) {
+            foreach (var i in _inputChangeEvents) {
                 _inputChangeEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_inputChangeEvents.Entities[i]);
             }
-            for (var i = 0; i < _inputEndEvents.EntitiesCount; i++) {
+            foreach (var i in _inputEndEvents) {
                 _inputEndEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_inputEndEvents.Entities[i]);
             }
-            for (var i = 0; i < _scrollViewEvents.EntitiesCount; i++) {
+            foreach (var i in _scrollViewEvents) {
                 _scrollViewEvents.Components1[i].Sender = null;
                 _world.RemoveEntity (_scrollViewEvents.Entities[i]);
             }
