@@ -78,4 +78,9 @@ public class TestUiClickEventSystem : IEcsRunSystem {
 [Examples repo](https://github.com/Leopotam/ecs-ui.examples.git).
 
 # License
-The software released under the terms of the MIT license. Enjoy.
+The software released under the terms of the [MIT license](./LICENSE). Enjoy.
+
+# Donate
+Its free opensource software, but you can buy me a coffee:
+
+<a href="https://www.buymeacoffee.com/leopotam" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
