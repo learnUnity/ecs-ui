@@ -55,7 +55,7 @@ namespace Leopotam.Ecs.Ui.Actions {
             if ((object) Emitter == null) {
                 Emitter = GetComponentInParent<EcsUiEmitter> ();
             }
-#if DEBUG && !ECS_PERF_TEST
+#if DEBUG
             if ((object) Emitter == null) {
                 Debug.LogError ("EcsUiEmitter not found in hierarchy", this);
             }
